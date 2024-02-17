@@ -1,5 +1,6 @@
 package com.reactnativecommunity.blurview;
 
+import android.app.Activity;
 import android.view.View;
 import com.facebook.react.uimanager.ThemedReactContext;
 
