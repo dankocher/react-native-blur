@@ -18,14 +18,14 @@ class BlurViewManagerImpl {
 
   public static @Nonnull BlurView createViewInstance(@Nonnull ThemedReactContext ctx) {
     BlurView blurView = new BlurView(ctx);
-    View decorView = Objects
-      .requireNonNull(ctx.getCurrentActivity())
-      .getWindow()
-      .getDecorView();
-    blurView
-      .setupWith(decorView.findViewById(android.R.id.content))
-      .setFrameClearDrawable(decorView.getBackground())
-      .setBlurRadius(defaultRadius);
+    Activity currentActivity = ctx.getCurrentActivity();
+    if (currentActivity != null) {
+      View decorView = currentActivity.getWindow().getDecorView();
+      blurView
+        .setupWith(decorView.findViewById(android.R.id.content))
+        .setFrameClearDrawable(decorView.getBackground())
+        .setBlurRadius(defaultRadius);
+    }
     return blurView;
   }
 
